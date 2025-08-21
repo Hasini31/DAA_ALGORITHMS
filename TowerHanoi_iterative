@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <math.h>
+
+void hanoi(int n, char source, char destination, char auxiliary) {
+    int moves = pow(2, n) - 1;  
+    if (n % 2 == 0) {
+        char temp = destination;
+        destination = auxiliary;
+        auxiliary = temp;
+    }
+
+    for (int i = 1; i <= moves; i++) {
+        if (i % 3 == 1)
+            printf("Move disk between %c (Source) and %c (Destination)\n", source, destination);
+        else if (i % 3 == 2)
+            printf("Move disk between %c (Source) and %c (Auxiliary)\n", source, auxiliary);
+        else
+            printf("Move disk between %c (Auxiliary) and %c (Destination)\n", auxiliary, destination);
+    }
+}
+int main() {
+    int n;
+    printf("Enter number of disks: ");
+    scanf("%d", &n);
+    hanoi(n, 'A', 'C', 'B');  
+    return 0;
+}
